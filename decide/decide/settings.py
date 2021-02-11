@@ -158,5 +158,4 @@ try:
 except ImportError:
     print("local_settings.py not found")
 
-
 INSTALLED_APPS = INSTALLED_APPS + MODULES
