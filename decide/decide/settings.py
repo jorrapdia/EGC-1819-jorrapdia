@@ -85,10 +85,7 @@ ROOT_URLCONF = 'decide.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [
-            os.path.join(BASE_DIR, 'admin/templates'),
-            os.path.join(BASE_DIR, 'decide/templates'),
-            ],
+        'DIRS': [],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -109,12 +106,8 @@ WSGI_APPLICATION = 'decide.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'decide',
-        'USER': 'decide',
-        'PASSWORD': 'decide',
-        'HOST': 'localhost',
-        'PORT': 5432,
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     }
 }
 
@@ -165,12 +158,5 @@ try:
 except ImportError:
     print("local_settings.py not found")
 
-# loading jsonnet config
-if os.path.exists("config.jsonnet"):
-    import json
-    from _jsonnet import evaluate_file
-    config = json.loads(evaluate_file("config.jsonnet"))
-    for k, v in config.items():
-        vars()[k] = v
 
 INSTALLED_APPS = INSTALLED_APPS + MODULES
