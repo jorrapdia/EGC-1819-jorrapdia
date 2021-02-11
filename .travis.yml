@@ -35,6 +35,6 @@ jobs:
   include:
     - script:
       - cd decide
-      - coverage run --branch --source=. ./manage.py test store/ --keepdb
+      - coverage run --branch --source=. ./manage.py test --keepdb
       - coverage xml
       - python-codacy-coverage -r coverage.xml
